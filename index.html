@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Austin's EDM Portfolio</title>
-
+  <title>Finals Lab Task 2 - MySQL Database</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
-
     * {
       margin: 0;
       padding: 0;
@@ -22,71 +20,26 @@
       line-height: 1.6;
     }
 
-    /* Full-screen loading screen with progress bar */
-    .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 1000;
-    }
-
-    .loading-bar {
-      width: 80%;
-      height: 5px;
-      background-color: #555;
-      border-radius: 5px;
-      margin-top: 20px;
-    }
-
-    .loading-bar-inner {
-      width: 0;
-      height: 100%;
-      background-color: #00f0ff;
-      border-radius: 5px;
-    }
-
-    .skip-btn {
-      margin-top: 30px;
-      padding: 12px 30px; /* Increased padding for a longer button */
-      font-family: 'Roboto', sans-serif;
-      font-size: 1.2rem;
-      color: #fff;
-      background-color: transparent;
-      border: 2px solid #00f0ff; /* Transparent background with border */
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .skip-btn:hover {
-      background-color: #00f0ff;
-      color: #000;
-    }
-
     header {
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background: linear-gradient(to right, #0a0a0a, #111);
+      background: #0a0a0a;
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 0 10px white;
-      z-index: 1000;
+      position: relative;
+      z-index: 2;
     }
 
-    header h1 {
-      font-size: 1.8rem;
-      color: #fff;
+    @keyframes color-change {
+      0% { color: white; }
+      50% { color: #00f0ff; }
+      100% { color: white; }
+    }
+
+    h1 {
+      font-size: 2rem;
+      animation: color-change 10s ease-in-out infinite;
     }
 
     nav a {
@@ -101,57 +54,10 @@
       color: #00f0ff;
     }
 
-    .hero {
-      width: 100vw;
-      margin-top: 100px;
-      padding: 80px 0;
-      background: rgba(255, 255, 255, 0.05);
-      text-align: center;
-    }
-
-    .hero h2 {
-      font-size: 2.8rem;
-      margin-bottom: 10px;
-      background: linear-gradient(270deg, white, #00f0ff, white);
-      background-size: 400% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: colorFlow 5s infinite linear;
-    }
-
-    @keyframes colorFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-    }
-
-    section:not(.hero) {
+    section {
       padding: 40px 20px;
       max-width: 1200px;
       margin: auto;
-    }
-
-    .about-me-container {
-      display: flex;
-      align-items: flex-start;
-      gap: 40px;
-      margin-top: 30px;
-    }
-
-    .about-me-photo {
-      width: 200px;
-      height: 200px;
-      border-radius: 10px;
-      border: 2px solid white;
-      object-fit: cover;
-    }
-
-    .about-me-text {
-      flex: 1;
     }
 
     h2.section-title {
@@ -162,49 +68,62 @@
       padding-bottom: 5px;
     }
 
-    ul li {
-      margin: 10px 0;
-      list-style: disc;
-      margin-left: 20px;
-    }
-
-    .project-links a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 10px 0;
-      padding: 12px;
-      background-color: #111;
-      border: 1px solid white;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-
-    .project-links a:hover {
-      background-color: rgba(255, 255, 255, 0.7);
-      color: #000;
-      transform: scale(1.03);
-    }
-
-    .social-icons {
+    .step-process {
       margin-top: 20px;
     }
 
-    a:focus, a:hover, a:active {
-      outline: none !important;
-      border: none !important;
+    .step-process h3 {
+      font-size: 1.5rem;
+      margin: 20px 0 10px;
     }
 
-    .social-icons a img {
-      width: 32px;
-      height: 32px;
-      margin-right: 15px;
+    .step-process ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .step-process ul li {
+      margin-bottom: 10px;
+    }
+
+    .project-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      border-radius: 10px;
+      border: 2px solid white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
       cursor: pointer;
-      transition: transform 0.3s ease;
     }
 
-    .social-icons a img:hover {
-      transform: scale(1.1);
+    .project-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px 5px rgba(0, 240, 255, 0.8);
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #00f0ff, #007fff);
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+
+    .download-btn i {
+      margin-right: 10px;
+    }
+
+    .download-btn:hover {
+      background: white;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
     }
 
     footer {
@@ -216,138 +135,120 @@
       color: #aaa;
     }
 
-    @media (max-width: 768px) {
-      .about-me-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
+    .preview-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      backdrop-filter: blur(10px);
+    }
 
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .preview-modal img {
+      max-width: 80%;
+      max-height: 80%;
+      transition: transform 0.3s ease;
+    }
 
-      nav {
-        margin-top: 10px;
-      }
+    .preview-modal.show {
+      display: flex;
+    }
 
-      .about-me-photo {
-        width: 150px;
-        height: 150px;
-      }
+    .preview-modal .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 30px;
+      color: white;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      border-radius: 50%;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-      .social-icons {
-        justify-content: center;
-      }
+    .preview-modal .close-btn:hover {
+      background: rgba(255, 0, 0, 0.7);
     }
   </style>
 </head>
 <body>
 
-  <!-- Full-Screen Loading Screen -->
-  <div class="loading-screen" id="loadingScreen">
-    <div class="loading-bar">
-      <div class="loading-bar-inner" id="loadingBar"></div>
-    </div>
-    <button class="skip-btn" id="skipBtn">Skip</button>
-  </div>
-
   <header>
-    <h1>EDM Portfolio</h1>
+    <h1>Finals Lab Task 2 - MySQL Database</h1>
     <nav>
-      <a href="#about">About</a>
-      <a href="#education">Education</a>
-      <a href="#projects">Projects</a>
+      <a href="https://austincgarcia.github.io/AustinEDM/">Back to Portfolio</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h2>WELCOME TO MY PORTFOLIO</h2>
-    <p>This site showcases my projects and progress in the EDM subject as a BSIS student at City College of Angeles.</p>
-  </section>
+  <section>
+    <h2 class="section-title">Project Overview</h2>
+    <p>This portfolio showcases my knowledge of creating a MySQL database through a simplified student assignment submission system. It includes the step-by-step development of tables for students, assignments, and their submissions. The task highlights the use of data types, relationships, and constraints such as primary keys, foreign keys, and composite keys to construct a complete and functional relational schema.</p>
 
-  <section id="about">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-me-container">
-      <img src="https://raw.githubusercontent.com/AustinCGarcia/AustinEDM/main/images/vspsGRAD1_0232%20FRAME%208R%20EDITED.jpg" alt="2x2 Photo" class="about-me-photo">
-      <div class="about-me-text">
-        <p>Hi, I'm Austin! A BSIS student at The City College of Angeles, driven to harness technology for positive change. I enjoy outdoor cycling and express my ideas through creative, meaningful projects. As an INFP, I’m passionate about helping others and collaborating on impactful work. Let’s build something great together!</p>
+    <a href="https://github.com/user-attachments/files/19717664/GARCIA.-.LAB.TASK.2.-.FINALS.docx" class="download-btn" target="_blank">
+      <i class="fas fa-file-download"></i> Download Document
+    </a>
 
-        <div class="social-icons">
-          <a href="https://facebook.com/austinkrl.x" target="_blank" title="Facebook">
-            <img src="https://raw.githubusercontent.com/AustinCGarcia/AustinEDM/refs/heads/main/images/1.png" alt="Facebook Icon">
-          </a>
-          <a href="https://instagram.com/dxvwlq_" target="_blank" title="Instagram">
-            <img src="https://raw.githubusercontent.com/AustinCGarcia/AustinEDM/refs/heads/main/images/3.png" alt="Instagram Icon">
-          </a>
-          <a href="https://github.com/AustinCGarcia" target="_blank" title="GitHub">
-            <img src="https://raw.githubusercontent.com/AustinCGarcia/AustinEDM/main/images/Untitled%20design.png" alt="GitHub Icon">
-          </a>
-        </div>
-      </div>
+    <div class="step-process">
+      <h3>Step By Step Process</h3>
+      <ul>
+        <li><strong>Create the student table:</strong> Define username as a VARCHAR(50) and set username as the Primary Key.</li>
+        <li><strong>Create the assignment table:</strong> Define shortname as a VARCHAR(50) and set it as the Primary Key. Define due_date as a DATE NOT NULL, and url as a VARCHAR(255), which can be null.</li>
+        <li><strong>Create the submission table:</strong> Define username and shortname both as VARCHAR(50), version as INT, submit_date as a DATE NOT NULL, and data as TEXT. Set a composite primary key of (username, shortname, version) and add foreign keys referencing the student and assignment tables.</li>
+      </ul>
     </div>
-  </section>
 
-  <section id="education">
-    <h2 class="section-title">Education</h2>
-    <ul>
-      <li><strong>College:</strong> Currently Studying at City College of Angeles</li>
-      <li><strong>High School:</strong> Graduated From Angeles City Science High School</li>
-    </ul>
-  </section>
+    <h2 class="section-title">Screenshots</h2>
+    
+    <h3>Query Statements</h3>
+    <img src="https://github.com/user-attachments/assets/8bdbad77-9a8f-4992-917f-559bd9d53bf6" alt="Student Table" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/70ed6bf5-453c-458d-b311-d7f9a2bb9858" alt="Assignment Table" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/722d023b-5fd7-435b-88c4-d381c9560514" alt="Submission Table" class="project-image" onclick="openPreview(this)">
 
-  <section id="projects" class="project-links">
-    <h2 class="section-title">My Projects in Midterms</h2>
-    <a href="https://austincgarcia.github.io/Midterm-Lab-Task-1/index.html">Midterm Lab Task 1: Data Cleaning and Preparation Using Excel</a>
-    <a href="https://austincgarcia.github.io/Midterm-Lab-Task-2/index.html">Midterm Lab Task 2: Data Cleaning and Preparation Using Power Query</a>
-    <a href="https://austincgarcia.github.io/Midterm-Lab-Task-3/index.html">Midterm Lab Task 3: Creating Pivot Table and Dashboard</a>
+    <h3>Table Structure</h3>
+    <img src="https://github.com/user-attachments/assets/830bde1a-3943-49e0-9cf5-aab5dba45839" alt="Student Table Structure" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/44c280bb-3380-4cba-9e9b-f80fe4b66ff2" alt="Assignment Table Structure" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/bddfdd25-17a7-4b30-9894-890f7b52ba70" alt="Submission Table Structure" class="project-image" onclick="openPreview(this)">
 
-    <h2 class="section-title" style="margin-top: 40px;">My Projects in Finals</h2>
-    <a href="https://austincgarcia.github.io/Finals-Lab-Task-1/index.html">Finals Lab Task 1: Creating a Database Using MySQL Workbench</a>
-    <a href="https://austincgarcia.github.io/Finals-Lab-Task-2/index.html">Finals Lab Task 2: Transforming ER Model to Relational Tables</a>
-    <a href="https://austincgarcia.github.io/Finals-Lab-Task-3/index.html">Finals Lab Task 3: Table Manipulation</a>
+    <h3>EER Diagram</h3>
+    <img src="https://github.com/user-attachments/assets/519ab790-1653-4e00-b11e-982bf68a22c0" alt="EER Diagram 1" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/eb123687-e0b1-45c3-8e06-29ac17905c79" alt="EER Diagram 2" class="project-image" onclick="openPreview(this)">
   </section>
 
   <footer>
     <p>© 2025 Austin's EDM Portfolio. All rights reserved.</p>
   </footer>
 
-  <script>
-    // Load progress bar and fade out the loading screen after 3 seconds
-    window.addEventListener('load', function() {
-      var progressBar = document.getElementById('loadingBar');
-      var loadingScreen = document.getElementById('loadingScreen');
-      var skipBtn = document.getElementById('skipBtn');
-      var width = 0;
-      
-      // Progress bar animation
-      var interval = setInterval(function() {
-        if (width >= 100) {
-          clearInterval(interval);
-          setTimeout(function() {
-            loadingScreen.style.transition = 'opacity 1s ease-out';
-            loadingScreen.style.opacity = '0';
-            setTimeout(function() {
-              loadingScreen.style.display = 'none';
-            }, 1000);
-          }, 500); // Wait for the bar to fill before fading out
-        } else {
-          width++;
-          progressBar.style.width = width + '%';
-        }
-      }, 30); // Adjust to make the progress bar fill faster or slower
+  <div id="preview-modal" class="preview-modal">
+    <button class="close-btn" onclick="closePreview()">×</button>
+    <img id="preview-image" src="" alt="Preview Image">
+  </div>
 
-      // Skip button functionality
-      skipBtn.addEventListener('click', function() {
-        clearInterval(interval); // Stop the progress bar animation
-        loadingScreen.style.transition = 'opacity 1s ease-out';
-        loadingScreen.style.opacity = '0';
-        setTimeout(function() {
-          loadingScreen.style.display = 'none';
-        }, 1000);
-      });
-    });
+  <script>
+    function openPreview(image) {
+      var modal = document.getElementById("preview-modal");
+      var previewImage = document.getElementById("preview-image");
+      previewImage.src = image.src;
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePreview() {
+      var modal = document.getElementById("preview-modal");
+      modal.classList.remove("show");
+      document.body.style.overflow = "auto";
+    }
   </script>
 
 </body>
