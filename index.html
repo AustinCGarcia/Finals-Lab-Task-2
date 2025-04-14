@@ -209,6 +209,47 @@
       </ul>
     </div>
 
+    <h2 class="section-title">Table Relationships</h2>
+
+    <h3>1. <code>Student Table</h3>
+    <ul>
+      <li><strong>Primary Key:</strong> <code>username</code></li>
+      <li><strong>Relationships:</strong></li>
+      <ul>
+        <li><strong>One-to-Many</strong> relationship with <code>submission</code><br>
+          → One student (<code>username</code>) can have <strong>many submissions</strong>.
+        </li>
+      </ul>
+    </ul>
+
+    <h3>2. <code>Assignment Table</h3>
+    <ul>
+      <li><strong>Primary Key:</strong> <code>shortname</code></li>
+      <li><strong>Relationships:</strong></li>
+      <ul>
+        <li><strong>One-to-Many</strong> relationship with <code>submission</code><br>
+          → One assignment (<code>shortname</code>) can have <strong>many submissions</strong> from different students (or multiple versions from the same student).
+        </li>
+      </ul>
+    </ul>
+
+    <h3>3. <code>Submission Table</h3>
+    <ul>
+      <li><strong>Composite Primary Key:</strong> (<code>username, shortname, version</code>)</li>
+      <li><strong>Relationships:</strong></li>
+      <ul>
+        <li><strong>Many-to-One</strong> with <code>student</code><br>
+          → Each submission belongs to <strong>one student</strong>.
+        </li>
+        <li><strong>Many-to-One</strong> with <code>assignment</code><br>
+          → Each submission is for <strong>one assignment</strong>.
+        </li>
+        <li>
+          Overall, this represents a <strong>many-to-many</strong> relationship between students and assignments, with <code>version</code> used to track multiple submissions.
+        </li>
+      </ul>
+    </ul>
+
     <h2 class="section-title">Screenshots</h2>
     
     <h3>Query Statements</h3>
