@@ -20,6 +20,28 @@
 - Set a composite primary key of (username, shortname, version).
 - Add foreign keys referencing the student and assignment tables.
 
+# Table Relationships
+### 1. **`student` table**
+- **Primary Key:** `username`
+- **Relationships:**
+  - **One-to-Many** relationship with `submission`
+    - One student (`username`) can have **many submissions**.
+
+### 2. **`assignment` table**
+- **Primary Key:** `shortname`
+- **Relationships:**
+  - **One-to-Many** relationship with `submission`
+    - One assignment (`shortname`) can have **many submissions** from different students (or multiple versions from the same student).
+
+### 3. **`submission` table**
+- **Composite Primary Key:** `(username, shortname, version)`
+- **Relationships:**
+  - **Many-to-One** with `student`
+    - Each submission belongs to **one student**.
+  - **Many-to-One** with `assignment`
+    - Each submission is for **one assignment**.
+  - Overall, it represents a many-to-many relationship between students and assignments, with a version to track multiple submissions.
+
 # Screenshots
 ## Query Statements
 1. Student Table
